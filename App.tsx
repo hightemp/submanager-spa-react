@@ -418,7 +418,7 @@ function App() {
         onImport={handleImportData}
       />
 
-      <AIChat 
+      <AIChat
         subscriptions={subscriptions}
         onAdd={handleAiAdd}
         onUpdate={handleAiUpdate}
@@ -426,6 +426,7 @@ function App() {
         isOpen={isChatOpen}
         onOpen={() => setIsChatOpen(true)}
         onClose={() => setIsChatOpen(false)}
+        settings={settings}
       />
     </div>
   );

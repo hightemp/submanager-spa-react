@@ -18,6 +18,8 @@ export interface Subscription {
 
 export interface AppSettings {
   exchangeRate: number; // USD to RUB
+  openRouterApiKey?: string;
+  aiModel?: string;
 }
 
 export type SubStatus = 'active' | 'soon' | 'overdue' | 'disabled';

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { X, Download, Upload, DollarSign, Save } from 'lucide-react';
+import { X, Download, Upload, DollarSign, Save, Key, Cpu } from 'lucide-react';
 import { AppSettings, Subscription, ExportData } from '../types';
 
 interface SettingsModalProps {
@@ -92,8 +92,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
               <label className="block text-sm font-medium text-gray-700 mb-2">Курс Доллара (USD → RUB)</label>
               <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 focus-within:ring-2 focus-within:ring-blue-200 focus-within:border-blue-400 transition">
                 <DollarSign size={18} className="text-gray-400" />
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   value={settings.exchangeRate}
                   onChange={(e) => onUpdateSettings({...settings, exchangeRate: parseFloat(e.target.value) || 0})}
                   className="w-full py-2 px-2 outline-none text-gray-800 font-medium"
@@ -102,6 +102,43 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 <span className="text-sm text-gray-400 font-medium">RUB</span>
               </div>
               <p className="text-xs text-gray-400 mt-2">Используется для конвертации стоимости иностранных сервисов.</p>
+            </div>
+          </div>
+
+          {/* Section: AI Settings */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">AI Настройки (OpenRouter)</h3>
+            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-4">
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">API Key</label>
+                <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 focus-within:ring-2 focus-within:ring-blue-200 focus-within:border-blue-400 transition">
+                  <Key size={18} className="text-gray-400" />
+                  <input
+                    type="password"
+                    value={settings.openRouterApiKey || ''}
+                    onChange={(e) => onUpdateSettings({...settings, openRouterApiKey: e.target.value})}
+                    className="w-full py-2 px-2 outline-none text-gray-800 font-medium"
+                    placeholder="sk-or-..."
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Модель</label>
+                <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 focus-within:ring-2 focus-within:ring-blue-200 focus-within:border-blue-400 transition">
+                  <Cpu size={18} className="text-gray-400" />
+                  <input
+                    type="text"
+                    value={settings.aiModel || ''}
+                    onChange={(e) => onUpdateSettings({...settings, aiModel: e.target.value})}
+                    className="w-full py-2 px-2 outline-none text-gray-800 font-medium"
+                    placeholder="google/gemini-2.0-flash-001"
+                  />
+                </div>
+                <p className="text-xs text-gray-400 mt-2">Например: google/gemini-2.0-flash-001, openai/gpt-4o-mini</p>
+              </div>
+
             </div>
           </div>
 
